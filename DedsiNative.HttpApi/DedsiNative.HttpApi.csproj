@@ -20,7 +20,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DedsiNative.Application\DedsiNative.Application.csproj" />
-      <ProjectReference Include="..\DedsiNative.Infrastructure\DedsiNative.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

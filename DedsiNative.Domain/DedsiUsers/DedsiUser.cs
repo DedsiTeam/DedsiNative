@@ -33,4 +33,16 @@ public class DedsiUser
     /// </summary>
     public string MobilePhone { get; private set; }
 
+    /// <summary>
+    /// 更新用户信息
+    /// </summary>
+    /// <param name="name">姓名</param>
+    /// <param name="email">邮箱</param>
+    /// <param name="mobilePhone">手机号</param>
+    public void Update(string name, string email, string mobilePhone)
+    {
+        Name = name;
+        Email = email;
+        MobilePhone = mobilePhone;
+    }
 }

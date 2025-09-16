@@ -1,7 +1,10 @@
-using System.Reflection;
+using DedsiNative;
+using DedsiNative.Apis;
+using DedsiNative.EntityFrameworkCores;
 using DedsiNative.Middleware;
 using Scalar.AspNetCore;
 using Serilog;
+using System.Reflection;
 
 // 配置 Serilog
 Log.Logger = new LoggerConfiguration()
@@ -22,9 +25,15 @@ builder.Services
         Assembly.Load("DedsiNative.Application"),
         Assembly.Load("DedsiNative.Infrastructure")
     )
-    .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Service") || type.Name.EndsWith("Repository")))
+    .AddClasses(classes => classes.AssignableTo<DedsiNativeQueryOperation>())
+    .AddClasses(classes => classes.AssignableTo<IDedsiNativeQuery>())
+    .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Repository")))
     .AsImplementedInterfaces()
-    .WithScopedLifetime());
+    .WithTransientLifetime()
+);
+
+// 添加 EF Core MySQL 支持
+builder.Services.AddMySqlDb(builder.Configuration);
 
 builder.Services.AddOpenApi();
 
@@ -65,6 +74,9 @@ app.UseHttpsRedirection();
 
 // 添加全局异常处理中间件
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+
+// 注册 API 端点
+app.MapDedsiNativeEndpoints();
 
 try
 {
