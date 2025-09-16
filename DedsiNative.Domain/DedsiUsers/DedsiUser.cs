@@ -1,0 +1,36 @@
+namespace DedsiNative.DedsiUsers;
+
+public class DedsiUser
+{
+    protected DedsiUser()
+    {
+        
+    }
+    
+    // 添加构造函数
+    public DedsiUser(string id, string name, string email, string mobilePhone)
+    {
+        Id = id;
+        Name = name;
+        Email = email;
+        MobilePhone = mobilePhone;
+    }
+    
+    public string Id { get; private set; }
+    
+    /// <summary>
+    /// 姓名
+    /// </summary>
+    public string Name { get; private set; }
+    
+    /// <summary>
+    /// 邮箱
+    /// </summary>
+    public string Email { get; private set; }
+    
+    /// <summary>
+    /// 手机号：15888888888
+    /// </summary>
+    public string MobilePhone { get; private set; }
+
+}
