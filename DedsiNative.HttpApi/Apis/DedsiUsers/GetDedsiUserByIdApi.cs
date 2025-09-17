@@ -1,8 +1,8 @@
-using DedsiNative.DedsiUsers.Queries;
-using DedsiNative.DedsiUsers.Queries.Dtos;
+using DedsiNative.DedsiUsers.Dtos;
+using DedsiNative.DedsiUsers.Operations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DedsiNative.HttpApi.Apis.DedsiUsers;
+namespace DedsiNative.Apis.DedsiUsers;
 
 /// <summary>
 /// 根据 ID 获取用户 API
@@ -25,14 +25,14 @@ public static class GetDedsiUserByIdApi
     /// 根据 ID 获取用户
     /// </summary>
     /// <param name="id">用户 ID</param>
-    /// <param name="query">用户查询服务</param>
+    /// <param name="dedsiUserGetByIdOperation">用户查询服务</param>
     /// <param name="cancellationToken">取消令牌</param>
     /// <returns>用户信息</returns>
     private static Task<DedsiUserDto> GetDedsiUserById(
         [FromRoute] string id, 
-        [FromServices] DedsiUserQuery query,
+        [FromServices] DedsiUserGetByIdOperation dedsiUserGetByIdOperation,
         CancellationToken cancellationToken)
     {
-        return query.GetByIdAsync(id, cancellationToken);
+        return dedsiUserGetByIdOperation.ExecuteAsync(id, cancellationToken);
     }
 }

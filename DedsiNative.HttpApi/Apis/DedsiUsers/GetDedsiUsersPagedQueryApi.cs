@@ -1,9 +1,8 @@
-using DedsiNative.DedsiUsers.Queries;
-using DedsiNative.DedsiUsers.Queries.Dtos;
-using DedsiNative.Middleware;
+using DedsiNative.DedsiUsers.Dtos;
+using DedsiNative.DedsiUsers.Operations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DedsiNative.HttpApi.Apis.DedsiUsers;
+namespace DedsiNative.Apis.DedsiUsers;
 
 /// <summary>
 /// 分页查询用户 API
@@ -26,14 +25,15 @@ public static class GetDedsiUsersPagedQueryApi
     /// 分页查询用户
     /// </summary>
     /// <param name="input">入参</param>
-    /// <param name="query">用户查询服务</param>
+    /// <param name="conditionalQueryOperation">用户查询服务</param>
     /// <param name="cancellationToken">取消令牌</param>
     /// <returns>分页查询结果</returns>
     private static Task<DedsiUserPagedQueryResultDto> GetDedsiUsersPagedQuery(
         [FromBody] DedsiUserPagedQueryInputDto input,
-        [FromServices] DedsiUserQuery query,
+        [FromServices] ConditionalQueryOperation conditionalQueryOperation,
         CancellationToken cancellationToken)
     {
-        return query.ConditionalQueryAsync(input, true, cancellationToken);
+        input.IsPaged = true;
+        return conditionalQueryOperation.ExecuteAsync(input, cancellationToken);
     }
 }

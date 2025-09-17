@@ -1,4 +1,4 @@
-﻿namespace DedsiNative.DedsiUsers.Queries.Dtos;
+﻿namespace DedsiNative.DedsiUsers.Dtos;
 
 public class DedsiUserDto
 {

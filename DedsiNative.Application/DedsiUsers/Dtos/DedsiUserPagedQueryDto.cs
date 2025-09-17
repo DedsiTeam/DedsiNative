@@ -1,10 +1,12 @@
-﻿namespace DedsiNative.DedsiUsers.Queries.Dtos;
+﻿namespace DedsiNative.DedsiUsers.Dtos;
 
 public class DedsiUserPagedQueryInputDto
 {
     public int PageIndex { get; set; } = 1;
 
     public int PageSize { get; set; } = 10;
+    
+    public bool? IsPaged { get; set; } = true;
 
     /// <summary>
     /// 姓名

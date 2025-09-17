@@ -5,17 +5,26 @@ using DedsiNative.Middleware;
 using Scalar.AspNetCore;
 using Serilog;
 using System.Reflection;
+using Serilog.Events;
 
 // 配置 Serilog
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File("Logs/DedsiNative-Logs-.txt", rollingInterval: RollingInterval.Hour, retainedFileCountLimit: null)
-    .CreateLogger();
+    .WriteTo.Async(c => c.File(path:"Logs/logs.txt", rollingInterval:RollingInterval.Hour, retainedFileCountLimit: null))
+    .WriteTo.Async(c => c.Console())
+    .CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
-
-// 使用 Serilog 作为日志提供程序，从配置文件读取设置
-builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
+builder.Host
+    .UseSerilog((context, services, loggerConfiguration) =>
+    {
+        loggerConfiguration
+            .MinimumLevel.Information()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+            .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
+            .Enrich.FromLogContext()
+            .WriteTo.Async(c => c.File(path:"Logs/logs.txt", rollingInterval:RollingInterval.Hour, retainedFileCountLimit: null))
+            .WriteTo.Async(c => c.Console());
+    });
 
 // 依赖注入
 builder.Services
@@ -25,8 +34,7 @@ builder.Services
         Assembly.Load("DedsiNative.Application"),
         Assembly.Load("DedsiNative.Infrastructure")
     )
-    .AddClasses(classes => classes.AssignableTo<DedsiNativeQueryOperation>())
-    .AddClasses(classes => classes.AssignableTo<IDedsiNativeQuery>())
+    .AddClasses(classes => classes.AssignableTo<IDedsiNativeQueryOperation>())
     .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Repository")))
     .AsImplementedInterfaces()
     .WithTransientLifetime()
@@ -65,8 +73,7 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference(options =>
     {
         options.Title = "DedsiNative API";
-        options.Theme = ScalarTheme.Default;
-        options.WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
+        options.WithDefaultHttpClient(ScalarTarget.JavaScript, ScalarClient.Axios);
     });
 }
 

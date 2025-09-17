@@ -1,5 +1,3 @@
-using DedsiNative.HttpApi.Apis.DedsiUsers;
-
 namespace DedsiNative.Apis.DedsiUsers;
 
 /// <summary>

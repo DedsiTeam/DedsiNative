@@ -1,7 +1,7 @@
 using DedsiNative.DedsiUsers.Operations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DedsiNative.HttpApi.Apis.DedsiUsers;
+namespace DedsiNative.Apis.DedsiUsers;
 
 /// <summary>
 /// 删除 Dedsi 用户 API

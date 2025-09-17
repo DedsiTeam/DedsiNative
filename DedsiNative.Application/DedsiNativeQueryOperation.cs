@@ -1,8 +1,8 @@
 ﻿namespace DedsiNative;
 
-public interface DedsiNativeQueryOperation;
+public interface IDedsiNativeQueryOperation;
 
-public interface IDedsiNativeQueryOperation<TInput, TResult> : DedsiNativeQueryOperation
+public interface IDedsiNativeQueryOperation<TInput, TResult> : IDedsiNativeQueryOperation
 {
     Task<TResult> ExecuteAsync(TInput input, CancellationToken cancellationToken);
 }

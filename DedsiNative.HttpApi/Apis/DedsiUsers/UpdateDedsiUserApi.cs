@@ -1,7 +1,7 @@
 using DedsiNative.DedsiUsers.Operations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DedsiNative.HttpApi.Apis.DedsiUsers;
+namespace DedsiNative.Apis.DedsiUsers;
 
 /// <summary>
 /// 更新 Dedsi 用户 API
