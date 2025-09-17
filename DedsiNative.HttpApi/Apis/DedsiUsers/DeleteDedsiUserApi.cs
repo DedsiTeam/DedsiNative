@@ -4,29 +4,29 @@ using Microsoft.AspNetCore.Mvc;
 namespace DedsiNative.HttpApi.Apis.DedsiUsers;
 
 /// <summary>
-/// É¾³ı Dedsi ÓÃ»§ API
+/// åˆ é™¤ Dedsi ç”¨æˆ· API
 /// </summary>
 public static class DeleteDedsiUserApi
 {
     /// <summary>
-    /// ÅäÖÃÉ¾³ıÓÃ»§Â·ÓÉ
+    /// é…ç½®åˆ é™¤ç”¨æˆ·è·¯ç”±
     /// </summary>
-    /// <param name="group">Â·ÓÉ×é</param>
+    /// <param name="group">è·¯ç”±ç»„</param>
     public static void MapDeleteDedsiUser(this RouteGroupBuilder group)
     {
         group.MapDelete("/{id}", DeleteDedsiUser)
             .WithName("DeleteDedsiUser")
-            .WithSummary("É¾³ı Dedsi ÓÃ»§")
-            .WithDescription("¸ù¾İIDÉ¾³ıÖ¸¶¨µÄ Dedsi ÓÃ»§");
+            .WithSummary("åˆ é™¤ Dedsi ç”¨æˆ·")
+            .WithDescription("æ ¹æ®IDåˆ é™¤æŒ‡å®šçš„ Dedsi ç”¨æˆ·");
     }
 
     /// <summary>
-    /// É¾³ı Dedsi ÓÃ»§
+    /// åˆ é™¤ Dedsi ç”¨æˆ·
     /// </summary>
-    /// <param name="id">ÓÃ»§ID</param>
-    /// <param name="operation">É¾³ıÓÃ»§²Ù×÷ÊµÀı</param>
-    /// <param name="cancellationToken">È¡ÏûÁîÅÆ</param>
-    /// <returns>²Ù×÷½á¹û</returns>
+    /// <param name="id">ç”¨æˆ·ID</param>
+    /// <param name="operation">åˆ é™¤ç”¨æˆ·æ“ä½œå®ä¾‹</param>
+    /// <param name="cancellationToken">å–æ¶ˆä»¤ç‰Œ</param>
+    /// <returns>æ“ä½œç»“æœ</returns>
     private static Task<bool> DeleteDedsiUser(
         [FromRoute] string id,
         [FromServices] DeleteDedsiUserOperation operation,

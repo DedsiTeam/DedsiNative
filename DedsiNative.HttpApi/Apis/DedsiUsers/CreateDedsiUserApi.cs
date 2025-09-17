@@ -4,29 +4,29 @@ using Microsoft.AspNetCore.Mvc;
 namespace DedsiNative.HttpApi.Apis.DedsiUsers;
 
 /// <summary>
-/// ´´½¨ Dedsi ÓÃ»§ API
+/// åˆ›å»ºç”¨æˆ· API
 /// </summary>
 public static class CreateDedsiUserApi
 {
     /// <summary>
-    /// ÅäÖÃ´´½¨ÓÃ»§¶Ëµã
+    /// é…ç½®åˆ›å»ºç”¨æˆ·è·¯ç”±
     /// </summary>
-    /// <param name="group">Â·ÓÉ×é</param>
+    /// <param name="group">è·¯ç”±ç»„</param>
     public static void MapCreateDedsiUser(this RouteGroupBuilder group)
     {
         group.MapPost("/", CreateDedsiUser)
             .WithName("CreateDedsiUser")
-            .WithSummary("´´½¨ Dedsi ÓÃ»§")
-            .WithDescription("´´½¨Ò»¸öĞÂµÄ Dedsi ÓÃ»§");
+            .WithSummary("åˆ›å»º Dedsi ç”¨æˆ·")
+            .WithDescription("åˆ›å»ºä¸€ä¸ªæ–°çš„ Dedsi ç”¨æˆ·");
     }
 
     /// <summary>
-    /// ´´½¨ Dedsi ÓÃ»§
+    /// åˆ›å»º Dedsi ç”¨æˆ·
     /// </summary>
-    /// <param name="input">ÓÃ»§´´½¨ĞÅÏ¢</param>
-    /// <param name="operation">´´½¨ÓÃ»§²Ù×÷·şÎñ</param>
-    /// <param name="cancellationToken">È¡ÏûÁîÅÆ</param>
-    /// <returns>´´½¨½á¹û</returns>
+    /// <param name="input">åˆ›å»ºç”¨æˆ·çš„è¾“å…¥æ•°æ®</param>
+    /// <param name="operation">åˆ›å»ºç”¨æˆ·æ“ä½œå®ä¾‹</param>
+    /// <param name="cancellationToken">å–æ¶ˆä»¤ç‰Œ</param>
+    /// <returns>æ“ä½œç»“æœ</returns>
     private static Task<bool> CreateDedsiUser(
         [FromBody] CreateDedsiUserInputDto input,
         [FromServices] CreateDedsiUserOperation operation,

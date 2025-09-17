@@ -5,29 +5,29 @@ using Microsoft.AspNetCore.Mvc;
 namespace DedsiNative.HttpApi.Apis.DedsiUsers;
 
 /// <summary>
-/// ¸ù¾İ ID »ñÈ¡ÓÃ»§ API
+/// æ ¹æ® ID è·å–ç”¨æˆ· API
 /// </summary>
 public static class GetDedsiUserByIdApi
 {
     /// <summary>
-    /// ÅäÖÃ¸ù¾İ ID »ñÈ¡ÓÃ»§¶Ëµã
+    /// é…ç½®æ ¹æ® ID è·å–ç”¨æˆ·ç«¯ç‚¹
     /// </summary>
-    /// <param name="group">Â·ÓÉ×é</param>
+    /// <param name="group">è·¯ç”±ç»„</param>
     public static void MapGetDedsiUserById(this RouteGroupBuilder group)
     {
         group.MapGet("/{id}", GetDedsiUserById)
             .WithName("GetDedsiUserById")
-            .WithSummary("¸ù¾İ ID »ñÈ¡ÓÃ»§")
-            .WithDescription("Í¨¹ıÓÃ»§ ID »ñÈ¡µ¥¸öÓÃ»§ĞÅÏ¢");
+            .WithSummary("æ ¹æ® ID è·å–ç”¨æˆ·")
+            .WithDescription("é€šè¿‡ç”¨æˆ· ID è·å–å•ä¸ªç”¨æˆ·ä¿¡æ¯");
     }
 
     /// <summary>
-    /// ¸ù¾İ ID »ñÈ¡ÓÃ»§
+    /// æ ¹æ® ID è·å–ç”¨æˆ·
     /// </summary>
-    /// <param name="id">ÓÃ»§ ID</param>
-    /// <param name="query">ÓÃ»§²éÑ¯·şÎñ</param>
-    /// <param name="cancellationToken">È¡ÏûÁîÅÆ</param>
-    /// <returns>ÓÃ»§ĞÅÏ¢</returns>
+    /// <param name="id">ç”¨æˆ· ID</param>
+    /// <param name="query">ç”¨æˆ·æŸ¥è¯¢æœåŠ¡</param>
+    /// <param name="cancellationToken">å–æ¶ˆä»¤ç‰Œ</param>
+    /// <returns>ç”¨æˆ·ä¿¡æ¯</returns>
     private static Task<DedsiUserDto> GetDedsiUserById(
         [FromRoute] string id, 
         [FromServices] DedsiUserQuery query,

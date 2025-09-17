@@ -6,29 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 namespace DedsiNative.HttpApi.Apis.DedsiUsers;
 
 /// <summary>
-/// ·ÖÒ³²éÑ¯ÓÃ»§ API
+/// åˆ†é¡µæŸ¥è¯¢ç”¨æˆ· API
 /// </summary>
 public static class GetDedsiUsersPagedQueryApi
 {
     /// <summary>
-    /// ÅäÖÃ·ÖÒ³²éÑ¯ÓÃ»§¶Ëµã
+    /// é…ç½®åˆ†é¡µæŸ¥è¯¢ç”¨æˆ·ç«¯ç‚¹
     /// </summary>
-    /// <param name="group">Â·ÓÉ×é</param>
+    /// <param name="group">è·¯ç”±ç»„</param>
     public static void MapGetDedsiUsersPagedQuery(this RouteGroupBuilder group)
     {
         group.MapPost("/paged", GetDedsiUsersPagedQuery)
             .WithName("GetDedsiUsersPagedQuery")
-            .WithSummary("·ÖÒ³²éÑ¯ÓÃ»§")
-            .WithDescription("¸ù¾İÌõ¼ş·ÖÒ³²éÑ¯ÓÃ»§ÁĞ±í");
+            .WithSummary("åˆ†é¡µæŸ¥è¯¢ç”¨æˆ·")
+            .WithDescription("æ ¹æ®æ¡ä»¶åˆ†é¡µæŸ¥è¯¢ç”¨æˆ·åˆ—è¡¨");
     }
 
     /// <summary>
-    /// ·ÖÒ³²éÑ¯ÓÃ»§
+    /// åˆ†é¡µæŸ¥è¯¢ç”¨æˆ·
     /// </summary>
-    /// <param name="input">Èë²Î</param>
-    /// <param name="query">ÓÃ»§²éÑ¯·şÎñ</param>
-    /// <param name="cancellationToken">È¡ÏûÁîÅÆ</param>
-    /// <returns>·ÖÒ³²éÑ¯½á¹û</returns>
+    /// <param name="input">å…¥å‚</param>
+    /// <param name="query">ç”¨æˆ·æŸ¥è¯¢æœåŠ¡</param>
+    /// <param name="cancellationToken">å–æ¶ˆä»¤ç‰Œ</param>
+    /// <returns>åˆ†é¡µæŸ¥è¯¢ç»“æœ</returns>
     private static Task<DedsiUserPagedQueryResultDto> GetDedsiUsersPagedQuery(
         [FromBody] DedsiUserPagedQueryInputDto input,
         [FromServices] DedsiUserQuery query,

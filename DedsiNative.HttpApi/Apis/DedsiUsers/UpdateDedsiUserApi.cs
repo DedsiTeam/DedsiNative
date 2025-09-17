@@ -4,30 +4,30 @@ using Microsoft.AspNetCore.Mvc;
 namespace DedsiNative.HttpApi.Apis.DedsiUsers;
 
 /// <summary>
-/// ¸üĞÂ Dedsi ÓÃ»§ API
+/// æ›´æ–° Dedsi ç”¨æˆ· API
 /// </summary>
 public static class UpdateDedsiUserApi
 {
     /// <summary>
-    /// ÅäÖÃ¸üĞÂÓÃ»§Â·ÓÉ
+    /// é…ç½®æ›´æ–°ç”¨æˆ·è·¯ç”±
     /// </summary>
-    /// <param name="group">Â·ÓÉ×é</param>
+    /// <param name="group">è·¯ç”±ç»„</param>
     public static void MapUpdateDedsiUser(this RouteGroupBuilder group)
     {
         group.MapPut("/{id}", UpdateDedsiUser)
             .WithName("UpdateDedsiUser")
-            .WithSummary("¸üĞÂ Dedsi ÓÃ»§")
-            .WithDescription("¸üĞÂÖ¸¶¨µÄ Dedsi ÓÃ»§ĞÅÏ¢");
+            .WithSummary("æ›´æ–° Dedsi ç”¨æˆ·")
+            .WithDescription("æ›´æ–°æŒ‡å®šçš„ Dedsi ç”¨æˆ·ä¿¡æ¯");
     }
 
     /// <summary>
-    /// ¸üĞÂ Dedsi ÓÃ»§
+    /// æ›´æ–° Dedsi ç”¨æˆ·
     /// </summary>
-    /// <param name="id">ÓÃ»§ID</param>
-    /// <param name="input">¸üĞÂÓÃ»§µÄĞÅÏ¢</param>
-    /// <param name="operation">¸üĞÂÓÃ»§²Ù×÷ÊµÀı</param>
-    /// <param name="cancellationToken">È¡ÏûÁîÅÆ</param>
-    /// <returns>²Ù×÷½á¹û</returns>
+    /// <param name="id">ç”¨æˆ·ID</param>
+    /// <param name="input">æ›´æ–°ç”¨æˆ·çš„ä¿¡æ¯</param>
+    /// <param name="operation">æ›´æ–°ç”¨æˆ·æ“ä½œå®ä¾‹</param>
+    /// <param name="cancellationToken">å–æ¶ˆä»¤ç‰Œ</param>
+    /// <returns>æ“ä½œç»“æœ</returns>
     private static Task<bool> UpdateDedsiUser(
         [FromRoute] string id,
         [FromBody] UpdateDedsiUserRequestDto input,
@@ -40,11 +40,11 @@ public static class UpdateDedsiUserApi
 }
 
 /// <summary>
-/// ¸üĞÂÓÃ»§ÇëÇó DTO£¨ÓÃÓÚAPI²ãÃæ£¬²»°üº¬ID£©
+/// æ›´æ–°ç”¨æˆ·è¯·æ±‚ DTOï¼ˆç”¨äºAPIå±‚é¢ï¼Œä¸åŒ…å«IDï¼‰
 /// </summary>
-/// <param name="UserName">ÓÃ»§Ãû</param>
-/// <param name="Email">ÓÊÏä</param>
-/// <param name="MobilePhone">ÊÖ»úºÅ</param>
+/// <param name="UserName">ç”¨æˆ·å</param>
+/// <param name="Email">é‚®ç®±</param>
+/// <param name="MobilePhone">æ‰‹æœºå·</param>
 public record UpdateDedsiUserRequestDto
 (
     string UserName,

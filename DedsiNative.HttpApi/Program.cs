@@ -65,7 +65,7 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference(options =>
     {
         options.Title = "DedsiNative API";
-        options.Theme = ScalarTheme.BluePlanet;
+        options.Theme = ScalarTheme.Default;
         options.WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
     });
 }
