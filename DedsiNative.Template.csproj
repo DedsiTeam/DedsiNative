@@ -18,7 +18,7 @@
     <ItemGroup>
         <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**" />
         <Compile Remove="**\*" />
-        <None Include="..\logo.png">
+        <None Include=".\logo.png">
             <Pack>True</Pack>
             <PackagePath></PackagePath>
             <Link>logo.png</Link>
