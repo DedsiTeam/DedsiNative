@@ -364,3 +364,10 @@ FodyWeavers.xsd
 
 
 .idea/
+
+hosts/RTAsset.Web.HttpApiHost/RTAssetWebHttpApiHost/*
+.vscode/launch.json
+/modules/RTAsset.ContractManagement/RTAsset.ContractManagement.EntityFrameworkCore/ContractChange/ContractChangeRepository - 副本.cs
+/modules/RTAsset.ContractManagement/RTAsset.ContractManagement.Domain/ContractChange/SelectAccper - 副本.cs
+/modules/RTAsset.ContractManagement/RTAsset.ContractManagement.Application.Contracts/ContractChange/Dtos/ContractChangeDto - 副本.cs
+/modules/RTAsset.ContractManagement/RTAsset.ContractManagement.Application/MobileContract/ContractInfoAppService - 副本.cs
