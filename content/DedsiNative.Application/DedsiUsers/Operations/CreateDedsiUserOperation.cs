@@ -1,4 +1,6 @@
-﻿namespace DedsiNative.DedsiUsers.Operations;
+﻿using DedsiAi;
+
+namespace DedsiNative.DedsiUsers.Operations;
 
 public record CreateDedsiUserInputDto
 (
@@ -11,7 +13,7 @@ public record CreateDedsiUserInputDto
 /// 创建用户操作
 /// </summary>
 /// <param name="dedsiUserRepository"></param>
-public class CreateDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) : DedsiNativeQueryOperation<CreateDedsiUserInputDto, bool>
+public class CreateDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) : DedsiAiOperation<CreateDedsiUserInputDto, bool>
 {
     /// <inheritdoc/>
     public override Task<bool> ExecuteAsync(CreateDedsiUserInputDto input, CancellationToken cancellationToken)

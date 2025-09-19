@@ -1,11 +1,12 @@
+using DedsiAi;
 using DedsiNative;
 using DedsiNative.Apis;
 using DedsiNative.EntityFrameworkCores;
 using DedsiNative.Middleware;
 using Scalar.AspNetCore;
 using Serilog;
-using System.Reflection;
 using Serilog.Events;
+using System.Reflection;
 
 // 配置 Serilog
 Log.Logger = new LoggerConfiguration()
@@ -34,7 +35,7 @@ builder.Services
         Assembly.Load("DedsiNative.Application"),
         Assembly.Load("DedsiNative.Infrastructure")
     )
-    .AddClasses(classes => classes.AssignableTo<IDedsiNativeQueryOperation>())
+    .AddClasses(classes => classes.AssignableTo<IDedsiAiQueryOperation>())
     .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Repository")))
     .AsImplementedInterfaces()
     .WithTransientLifetime()
