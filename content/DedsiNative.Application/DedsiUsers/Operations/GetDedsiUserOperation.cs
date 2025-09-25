@@ -28,7 +28,7 @@ public class DedsiUserDto
 /// </summary>
 /// <param name="dedsiUserRepository"></param>
 public class GetDedsiUserOperation(IDedsiUserRepository dedsiUserRepository)
-    : DedsiAiOperation<string, DedsiUserDto>
+    : DedsiNativeOperation<string, DedsiUserDto>
 {
     public override async Task<DedsiUserDto> ExecuteAsync(string id, CancellationToken cancellationToken)
     {

@@ -4,8 +4,9 @@ using System.Linq.Expressions;
 
 namespace DedsiNative.EntityFrameworkCores;
 
-public class DedsiNativeEfCoreRepository<TEntity, TPrimaryKey>(DedsiNativeDbContext dedsiNativeDbContext) 
-    : IDedsiNativeRepository<TEntity, TPrimaryKey> where TEntity : class
+public class DedsiNativeEfCoreRepository<TEntity, TPrimaryKey>(DedsiNativeDbContext dedsiNativeDbContext)
+    : IDedsiNativeRepository<TEntity, TPrimaryKey>
+    where TEntity : class
 {
     protected virtual DbSet<TEntity> DbSet => dedsiNativeDbContext.Set<TEntity>();
 

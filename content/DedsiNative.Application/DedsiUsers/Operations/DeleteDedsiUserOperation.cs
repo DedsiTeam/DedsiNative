@@ -11,7 +11,7 @@ public record DeleteDedsiUserInputDto
 /// É¾³ýÓÃ»§²Ù×÷
 /// </summary>
 /// <param name="dedsiUserRepository"></param>
-public class DeleteDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) : DedsiAiOperation<DeleteDedsiUserInputDto, bool>
+public class DeleteDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) : DedsiNativeOperation<DeleteDedsiUserInputDto, bool>
 {
     /// <inheritdoc/>
     public override Task<bool> ExecuteAsync(DeleteDedsiUserInputDto input, CancellationToken cancellationToken)
