@@ -14,7 +14,7 @@ public record UpdateDedsiUserInputDto
 /// 更新用户操作
 /// </summary>
 /// <param name="dedsiUserRepository"></param>
-public class UpdateDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) : DedsiAiOperation<UpdateDedsiUserInputDto, bool>
+public class UpdateDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) : DedsiNativeOperation<UpdateDedsiUserInputDto, bool>
 {
     /// <inheritdoc/>
     public override async Task<bool> ExecuteAsync(UpdateDedsiUserInputDto input, CancellationToken cancellationToken)

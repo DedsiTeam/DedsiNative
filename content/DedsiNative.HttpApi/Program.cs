@@ -1,5 +1,4 @@
 using DedsiAi;
-using DedsiNative;
 using DedsiNative.Apis;
 using DedsiNative.EntityFrameworkCores;
 using DedsiNative.Middleware;
@@ -35,7 +34,7 @@ builder.Services
         Assembly.Load("DedsiNative.Application"),
         Assembly.Load("DedsiNative.Infrastructure")
     )
-    .AddClasses(classes => classes.AssignableTo<IDedsiAiQueryOperation>())
+    .AddClasses(classes => classes.AssignableTo<IDedsiNativeOperation>())
     .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Repository")))
     .AsImplementedInterfaces()
     .WithTransientLifetime()

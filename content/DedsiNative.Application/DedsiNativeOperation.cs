@@ -1,8 +1,8 @@
 ﻿namespace DedsiAi;
 
-public interface IDedsiAiQueryOperation;
+public interface IDedsiNativeOperation;
 
-public class DedsiAiOperation
+public class DedsiNativeOperation
 {
     /// <summary>
     /// string 主键生成，使用 ULID 标准
@@ -17,12 +17,12 @@ public class DedsiAiOperation
     protected Guid GetGuidPrimaryKey() => Guid.CreateVersion7();
 }
 
-public interface IDedsiAiQueryOperation<TResult> : IDedsiAiQueryOperation
+public interface IDedsiNativeOperation<TResult> : IDedsiNativeOperation
 {
     Task<TResult> ExecuteAsync(CancellationToken cancellationToken);
 }
 
-public abstract class DedsiAiOperation<TResult>: DedsiAiOperation, IDedsiAiQueryOperation<TResult>
+public abstract class DedsiNativeOperation<TResult>: DedsiNativeOperation, IDedsiNativeOperation<TResult>
 {
     /// <summary>
     /// 子类必须实现此方法以执行查询操作
@@ -33,12 +33,12 @@ public abstract class DedsiAiOperation<TResult>: DedsiAiOperation, IDedsiAiQuery
     public abstract Task<TResult> ExecuteAsync(CancellationToken cancellationToken);
 }
 
-public interface IDedsiAiQueryOperation<TInput, TResult> : IDedsiAiQueryOperation
+public interface IDedsiNativeOperation<TInput, TResult> : IDedsiNativeOperation
 {
     Task<TResult> ExecuteAsync(TInput input, CancellationToken cancellationToken);
 }
 
-public abstract class DedsiAiOperation<TInput, TResult> : DedsiAiOperation, IDedsiAiQueryOperation<TInput, TResult>
+public abstract class DedsiNativeOperation<TInput, TResult> : DedsiNativeOperation, IDedsiNativeOperation<TInput, TResult>
 {
     /// <summary>
     /// 子类必须实现此方法以执行查询操作

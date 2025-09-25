@@ -57,7 +57,7 @@ public class DedsiUserPagedQueryRowDto
     public string MobilePhone { get; set; }
 }
 
-public class ConditionalQueryOperation(DedsiNativeDbContext dedsiNativeDbContext): DedsiAiOperation<DedsiUserPagedQueryInputDto, DedsiUserPagedQueryResultDto>
+public class ConditionalQueryOperation(DedsiNativeDbContext dedsiNativeDbContext): DedsiNativeOperation<DedsiUserPagedQueryInputDto, DedsiUserPagedQueryResultDto>
 {
     public override async Task<DedsiUserPagedQueryResultDto> ExecuteAsync(DedsiUserPagedQueryInputDto input, CancellationToken cancellationToken)
     {

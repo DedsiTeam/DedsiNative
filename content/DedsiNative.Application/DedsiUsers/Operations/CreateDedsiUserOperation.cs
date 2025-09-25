@@ -13,7 +13,7 @@ public record CreateDedsiUserInputDto
 /// 创建用户操作
 /// </summary>
 /// <param name="dedsiUserRepository"></param>
-public class CreateDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) : DedsiAiOperation<CreateDedsiUserInputDto, bool>
+public class CreateDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) : DedsiNativeOperation<CreateDedsiUserInputDto, bool>
 {
     /// <inheritdoc/>
     public override Task<bool> ExecuteAsync(CreateDedsiUserInputDto input, CancellationToken cancellationToken)
