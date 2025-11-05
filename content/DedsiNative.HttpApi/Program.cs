@@ -1,4 +1,3 @@
-using DedsiAi;
 using DedsiNative.Apis;
 using DedsiNative.EntityFrameworkCores;
 using DedsiNative.Middleware;
@@ -6,6 +5,7 @@ using Scalar.AspNetCore;
 using Serilog;
 using Serilog.Events;
 using System.Reflection;
+using DedsiNative;
 
 // 配置 Serilog
 Log.Logger = new LoggerConfiguration()
@@ -31,7 +31,7 @@ builder.Services
     .Scan(scan => scan
     .FromAssemblies(
         Assembly.Load("DedsiNative.HttpApi"),
-        Assembly.Load("DedsiNative.Application"),
+        Assembly.Load("DedsiNative.Operation"),
         Assembly.Load("DedsiNative.Infrastructure")
     )
     .AddClasses(classes => classes.AssignableTo<IDedsiNativeOperation>())
@@ -52,12 +52,12 @@ app.UseSerilogRequestLogging(options =>
 {
     options.MessageTemplate = "HTTP {RequestMethod} {RequestPath} responded {StatusCode} in {Elapsed:0.0000} ms";
     options.GetLevel = (httpContext, elapsed, ex) => ex != null
-        ? Serilog.Events.LogEventLevel.Error 
+        ? LogEventLevel.Error 
         : httpContext.Response.StatusCode > 499 
-            ? Serilog.Events.LogEventLevel.Error
+            ? LogEventLevel.Error
             : elapsed > 2000
-                ? Serilog.Events.LogEventLevel.Warning
-                : Serilog.Events.LogEventLevel.Information;
+                ? LogEventLevel.Warning
+                : LogEventLevel.Information;
     options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
     {
         diagnosticContext.Set("RequestHost", httpContext.Request.Host.Value);

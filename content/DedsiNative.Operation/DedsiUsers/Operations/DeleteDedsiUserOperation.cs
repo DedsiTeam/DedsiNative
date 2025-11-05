@@ -1,5 +1,3 @@
-using DedsiAi;
-
 namespace DedsiNative.DedsiUsers.Operations;
 
 public record DeleteDedsiUserInputDto
@@ -8,7 +6,7 @@ public record DeleteDedsiUserInputDto
 );
 
 /// <summary>
-/// É¾³ıÓÃ»§²Ù×÷
+/// åˆ é™¤ç”¨æˆ·æ“ä½œ
 /// </summary>
 /// <param name="dedsiUserRepository"></param>
 public class DeleteDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) : DedsiNativeOperation<DeleteDedsiUserInputDto, bool>

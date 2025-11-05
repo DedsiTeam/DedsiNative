@@ -1,4 +1,3 @@
-using DedsiAi;
 using DedsiNative.EntityFrameworkCores;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,17 +12,17 @@ public class DedsiUserPagedQueryInputDto
     public bool? IsPaged { get; set; } = true;
 
     /// <summary>
-    /// 姓名
+    /// 濮撳悕
     /// </summary>
     public string? Name { get; set; }
 
     /// <summary>
-    /// 邮箱
+    /// 閭
     /// </summary>
     public string? Email { get; set; }
 
     /// <summary>
-    /// 手机号：15888888888
+    /// 鎵嬫満鍙凤細15888888888
     /// </summary>
     public string? MobilePhone { get; set; }
 
@@ -42,17 +41,17 @@ public class DedsiUserPagedQueryRowDto
     public string Id { get; set; }
 
     /// <summary>
-    /// 姓名
+    /// 濮撳悕
     /// </summary>
     public string Name { get; set; }
 
     /// <summary>
-    /// 邮箱
+    /// 閭
     /// </summary>
     public string Email { get; set; }
 
     /// <summary>
-    /// 手机号：15888888888
+    /// 鎵嬫満鍙凤細15888888888
     /// </summary>
     public string MobilePhone { get; set; }
 }

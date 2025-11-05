@@ -1,6 +1,4 @@
-﻿using DedsiAi;
-
-namespace DedsiNative.DedsiUsers.Operations;
+﻿namespace DedsiNative.DedsiUsers.Operations;
 
 public record CreateDedsiUserInputDto
 (

@@ -7,7 +7,13 @@ public class DedsiUser
         
     }
     
-    // 添加构造函数
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="name"></param>
+    /// <param name="email"></param>
+    /// <param name="mobilePhone"></param>
     public DedsiUser(string id, string name, string email, string mobilePhone)
     {
         Id = id;
