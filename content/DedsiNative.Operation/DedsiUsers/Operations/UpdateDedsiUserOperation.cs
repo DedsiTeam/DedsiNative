@@ -3,7 +3,7 @@ namespace DedsiNative.DedsiUsers.Operations;
 public record UpdateDedsiUserInputDto
 (
     string Id,
-    string UserName,
+    string Name,
     string Email,
     string MobilePhone
 );
@@ -21,7 +21,9 @@ public class UpdateDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) 
         var dedsiUser = await dedsiUserRepository.GetAsync(input.Id, cancellationToken);
         
         // 更新用户信息
-        dedsiUser.Update(input.UserName, input.Email, input.MobilePhone);
+        dedsiUser.ChangeName(input.Name);
+        dedsiUser.ChangeEmail(input.Email);
+        dedsiUser.ChangeMobilePhone(input.MobilePhone);
         
         // 保存到数据库
         return await dedsiUserRepository.UpdateAsync(dedsiUser, cancellationToken);
