@@ -1,4 +1,4 @@
-﻿using DedsiNative.Apis.DedsiUsers;
+﻿using DedsiNative.Apis.Users;
 
 namespace DedsiNative.Apis;
 

@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedsiNative.Domain", "DedsiNative.Domain\DedsiNative.Domain.csproj", "{0D3B6FF9-FAEA-47DA-BA2B-69C4A1556511}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedsiNative.Application", "DedsiNative.Application\DedsiNative.Application.csproj", "{06D18335-12C2-42AF-ACF5-B2565E8AB3AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedsiNative.Operation", "DedsiNative.Operation\DedsiNative.Operation.csproj", "{06D18335-12C2-42AF-ACF5-B2565E8AB3AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedsiNative.Infrastructure", "DedsiNative.Infrastructure\DedsiNative.Infrastructure.csproj", "{908931B2-996C-495C-9E3E-73D62EE74733}"
 EndProject

@@ -1,17 +1,15 @@
-using DedsiAi;
-
 namespace DedsiNative.DedsiUsers.Operations;
 
 public record UpdateDedsiUserInputDto
 (
     string Id,
-    string UserName,
+    string Name,
     string Email,
     string MobilePhone
 );
 
 /// <summary>
-/// 更新用户操作
+/// 鏇存柊鐢ㄦ埛鎿嶄綔
 /// </summary>
 /// <param name="dedsiUserRepository"></param>
 public class UpdateDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) : DedsiNativeOperation<UpdateDedsiUserInputDto, bool>
@@ -19,13 +17,15 @@ public class UpdateDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) 
     /// <inheritdoc/>
     public override async Task<bool> ExecuteAsync(UpdateDedsiUserInputDto input, CancellationToken cancellationToken)
     {
-        // 获取现有用户
+        // 鑾峰彇鎸囧畾鐢ㄦ埛
         var dedsiUser = await dedsiUserRepository.GetAsync(input.Id, cancellationToken);
         
-        // 更新用户信息
-        dedsiUser.Update(input.UserName, input.Email, input.MobilePhone);
+        // 鏇存柊鐢ㄦ埛淇℃伅
+        dedsiUser.ChangeName(input.Name);
+        dedsiUser.ChangeEmail(input.Email);
+        dedsiUser.ChangeMobilePhone(input.MobilePhone);
         
-        // 保存到数据库
+        // 淇濆瓨鍒版暟鎹簱
         return await dedsiUserRepository.UpdateAsync(dedsiUser, cancellationToken);
     }
 }

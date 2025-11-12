@@ -4,27 +4,27 @@ using System.Linq.Expressions;
 
 namespace DedsiNative.EntityFrameworkCores;
 
-public class DedsiNativeEfCoreRepository<TEntity, TPrimaryKey>(DedsiNativeDbContext dedsiNativeDbContext)
-    : IDedsiNativeRepository<TEntity, TPrimaryKey>
-    where TEntity : class
+public class DedsiNativeEfCoreRepository<TDomain, TPrimaryKey>(DedsiNativeDbContext dedsiNativeDbContext)
+    : IDedsiNativeRepository<TDomain, TPrimaryKey>
+    where TDomain : class
 {
-    protected virtual DbSet<TEntity> DbSet => dedsiNativeDbContext.Set<TEntity>();
+    protected virtual DbSet<TDomain> DbSet => dedsiNativeDbContext.Set<TDomain>();
 
     /// <summary>
     /// 获取主键表达式用于查询
     /// </summary>
     /// <param name="id">主键值</param>
     /// <returns>主键表达式</returns>
-    protected virtual Expression<Func<TEntity, bool>> GetPrimaryKeyExpression(TPrimaryKey id)
+    protected virtual Expression<Func<TDomain, bool>> GetPrimaryKeyExpression(TPrimaryKey id)
     {
         // 使用 EF.Property 方法来动态获取主键属性
         // 这是一个通用的解决方案，适用于大多数实体
-        var parameter = Expression.Parameter(typeof(TEntity), "e");
-        var primaryKeyProperty = dedsiNativeDbContext.Model.FindEntityType(typeof(TEntity))?.FindPrimaryKey()?.Properties.FirstOrDefault();
+        var parameter = Expression.Parameter(typeof(TDomain), "e");
+        var primaryKeyProperty = dedsiNativeDbContext.Model.FindEntityType(typeof(TDomain))?.FindPrimaryKey()?.Properties.FirstOrDefault();
 
         if (primaryKeyProperty == null)
         {
-            throw new InvalidOperationException($"{typeof(TEntity).Name} 找不到主键");
+            throw new InvalidOperationException($"{typeof(TDomain).Name} 找不到主键");
         }
 
         var propertyAccess = Expression.Call(
@@ -36,7 +36,7 @@ public class DedsiNativeEfCoreRepository<TEntity, TPrimaryKey>(DedsiNativeDbCont
 
         var equal = Expression.Equal(propertyAccess, Expression.Constant(id));
 
-        return Expression.Lambda<Func<TEntity, bool>>(equal, parameter);
+        return Expression.Lambda<Func<TDomain, bool>>(equal, parameter);
     }
 
     /// <inheritdoc/>
@@ -50,21 +50,16 @@ public class DedsiNativeEfCoreRepository<TEntity, TPrimaryKey>(DedsiNativeDbCont
     }
 
     /// <inheritdoc/>
-    public virtual async Task<TEntity> GetAsync(TPrimaryKey id, CancellationToken cancellationToken)
+    public virtual async Task<TDomain> GetAsync(TPrimaryKey id, CancellationToken cancellationToken)
     {
         // 根据主键查找实体
-        var entity = await DbSet.FirstOrDefaultAsync(GetPrimaryKeyExpression(id), cancellationToken);
+        var entity = await FindAsync(GetPrimaryKeyExpression(id), cancellationToken);
 
-        if (entity == null)
-        {
-            throw new KeyNotFoundException($"Entity with id {id} not found.");
-        }
-
-        return entity;
+        return entity ?? throw new KeyNotFoundException($"不存在 id {id} 的实体。");
     }
 
     /// <inheritdoc/>
-    public virtual async Task<bool> InsertAsync(TEntity entity, CancellationToken cancellationToken)
+    public virtual async Task<bool> InsertAsync(TDomain entity, CancellationToken cancellationToken)
     {
         await DbSet.AddAsync(entity, cancellationToken);
         var result = await dedsiNativeDbContext.SaveChangesAsync(cancellationToken);
@@ -72,10 +67,15 @@ public class DedsiNativeEfCoreRepository<TEntity, TPrimaryKey>(DedsiNativeDbCont
     }
 
     /// <inheritdoc/>
-    public virtual async Task<bool> UpdateAsync(TEntity entity, CancellationToken cancellationToken)
+    public virtual async Task<bool> UpdateAsync(TDomain entity, CancellationToken cancellationToken)
     {
         DbSet.Update(entity);
         var result = await dedsiNativeDbContext.SaveChangesAsync(cancellationToken);
         return result > 0;
+    }
+
+    public virtual Task<TDomain?> FindAsync(Expression<Func<TDomain, bool>> wherePredicate, CancellationToken cancellationToken)
+    {
+        return DbSet.FirstOrDefaultAsync(wherePredicate, cancellationToken);
     }
 }

@@ -1,10 +1,8 @@
-﻿using DedsiAi;
-
-namespace DedsiNative.DedsiUsers.Operations;
+﻿namespace DedsiNative.DedsiUsers.Operations;
 
 public record CreateDedsiUserInputDto
 (
-    string UserName,
+    string Name,
     string Email,
     string MobilePhone
 );
@@ -20,7 +18,7 @@ public class CreateDedsiUserOperation(IDedsiUserRepository dedsiUserRepository) 
     {
         var dedsiUser = new DedsiUser(
             GetStringPrimaryKey(),
-            input.UserName,
+            input.Name,
             input.Email,
             input.MobilePhone
         );
