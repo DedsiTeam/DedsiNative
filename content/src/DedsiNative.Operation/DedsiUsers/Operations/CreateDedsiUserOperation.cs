@@ -1,4 +1,6 @@
-﻿namespace DedsiNative.DedsiUsers.Operations;
+﻿using Dedsi.Operation;
+
+namespace DedsiNative.DedsiUsers.Operations;
 
 public record CreateDedsiUserInputDto
 (

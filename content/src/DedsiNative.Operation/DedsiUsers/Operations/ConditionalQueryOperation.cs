@@ -1,3 +1,4 @@
+using Dedsi.Operation;
 using DedsiNative.EntityFrameworkCores;
 using Microsoft.EntityFrameworkCore;
 
@@ -60,7 +61,9 @@ public class ConditionalQueryOperation(DedsiNativeDbContext dedsiNativeDbContext
 {
     public override async Task<DedsiUserPagedQueryResultDto> ExecuteAsync(DedsiUserPagedQueryInputDto input, CancellationToken cancellationToken)
     {
-        var query = dedsiNativeDbContext.DedsiUsers.AsQueryable()
+        var query = dedsiNativeDbContext
+            .DedsiUsers
+            .AsQueryable()
             .WhereIf(input.Name, u => u.Name.Contains(input.Name!))
             .WhereIf(input.Email, u => u.Email.Contains(input.Email!))
             .WhereIf(input.MobilePhone, u => u.MobilePhone.Contains(input.MobilePhone!));

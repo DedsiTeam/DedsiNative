@@ -1,3 +1,5 @@
+using Dedsi.Operation;
+
 namespace DedsiNative.DedsiUsers.Operations;
 
 public record DeleteDedsiUserInputDto

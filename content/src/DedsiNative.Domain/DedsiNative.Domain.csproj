@@ -7,11 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DedsiNative.Infrastructure\DedsiNative.Infrastructure.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Ulid" Version="1.4.1" />
+      <ProjectReference Include="..\..\frameworks\Dedsi.Domain\Dedsi.Domain.csproj" />
     </ItemGroup>
 
 </Project>
