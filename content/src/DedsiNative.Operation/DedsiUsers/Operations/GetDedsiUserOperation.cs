@@ -1,4 +1,4 @@
-using Dedsi.Operation;
+using Dedsi;
 
 namespace DedsiNative.DedsiUsers.Operations;
 

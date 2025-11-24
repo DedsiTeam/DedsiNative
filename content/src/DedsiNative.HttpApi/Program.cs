@@ -4,7 +4,7 @@ using Scalar.AspNetCore;
 using Serilog;
 using Serilog.Events;
 using System.Reflection;
-using Dedsi.Operation;
+using Dedsi;
 using Dedsi.AspNetCore.Middlewares;
 
 // 配置 Serilog

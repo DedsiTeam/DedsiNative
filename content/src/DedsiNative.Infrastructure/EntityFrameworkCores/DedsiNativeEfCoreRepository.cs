@@ -1,6 +1,6 @@
-﻿using DedsiNative.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using Dedsi.Repositories;
 
 namespace DedsiNative.EntityFrameworkCores;
 

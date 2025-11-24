@@ -1,4 +1,4 @@
-using Dedsi.Operation;
+using Dedsi;
 using DedsiNative.EntityFrameworkCores;
 using Microsoft.EntityFrameworkCore;
 

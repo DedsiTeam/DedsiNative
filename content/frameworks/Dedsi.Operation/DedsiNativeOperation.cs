@@ -1,4 +1,4 @@
-﻿namespace Dedsi.Operation;
+﻿namespace Dedsi;
 
 public interface IDedsiNativeOperation;
 
