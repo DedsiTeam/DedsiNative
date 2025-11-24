@@ -6,4 +6,8 @@
         <RootNamespace>DedsiNative</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\frameworks\Dedsi.Domain\Dedsi.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

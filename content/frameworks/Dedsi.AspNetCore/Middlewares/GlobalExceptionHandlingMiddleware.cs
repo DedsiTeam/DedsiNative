@@ -1,7 +1,11 @@
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Text.Json;
 
-namespace DedsiNative.Middleware;
+namespace Dedsi.AspNetCore.Middlewares;
 
 /// <summary>
 /// 全局异常处理中间件
@@ -9,7 +13,7 @@ namespace DedsiNative.Middleware;
 public class GlobalExceptionHandlingMiddleware(
     RequestDelegate next,
     ILogger<GlobalExceptionHandlingMiddleware> logger,
-    IWebHostEnvironment environment)
+    IHostEnvironment hostEnvironment)
 {
     public async Task InvokeAsync(HttpContext context)
     {
@@ -85,10 +89,10 @@ public class GlobalExceptionHandlingMiddleware(
                 break;
         }
 
-        // 在开发环境下显示详细错误信息
-        if (environment.IsDevelopment())
+        // 非生产环境环境下显示详细错误信息
+        if (hostEnvironment.IsProduction() == false)
         {
-            response.Details = exception.ToString();
+            response.ErrorDetails = exception.ToString();
         }
 
         var jsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions
@@ -120,7 +124,7 @@ public class ErrorResponse
     /// <summary>
     /// 详细错误信息（仅在开发环境显示）
     /// </summary>
-    public string? Details { get; set; }
+    public string? ErrorDetails { get; set; }
 
     /// <summary>
     /// 错误发生时间

@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace DedsiNative.Repositories;
+namespace Dedsi.Repositories;
 
 /// <summary>
 /// 通用仓储接口，定义针对领域实体的基础数据访问操作（增、改、删、查）。

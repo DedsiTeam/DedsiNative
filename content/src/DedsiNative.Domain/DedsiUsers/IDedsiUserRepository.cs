@@ -1,4 +1,4 @@
-using DedsiNative.Repositories;
+using Dedsi.Repositories;
 
 namespace DedsiNative.DedsiUsers;
 

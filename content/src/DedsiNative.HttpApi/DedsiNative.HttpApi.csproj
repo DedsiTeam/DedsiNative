@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\frameworks\Dedsi.AspNetCore\Dedsi.AspNetCore.csproj" />
       <ProjectReference Include="..\DedsiNative.Operation\DedsiNative.Operation.csproj" />
     </ItemGroup>
 

@@ -1,11 +1,11 @@
 using DedsiNative.Apis;
 using DedsiNative.EntityFrameworkCores;
-using DedsiNative.Middleware;
 using Scalar.AspNetCore;
 using Serilog;
 using Serilog.Events;
 using System.Reflection;
-using DedsiNative;
+using Dedsi;
+using Dedsi.AspNetCore.Middlewares;
 
 // 配置 Serilog
 Log.Logger = new LoggerConfiguration()
@@ -87,7 +87,7 @@ app.MapDedsiNativeEndpoints();
 
 try
 {
-    Log.Information("正在启动 DedsiNative API...");
+    Log.Information("正在启动 DedsiNative HttpApi ...");
     app.Run();
 }
 catch (Exception ex)
