@@ -30,7 +30,7 @@ builder.Host
 builder.Services
     .Scan(scan => scan
     .FromAssemblies(
-        Assembly.Load("DedsiNative.HttpApi"),
+        Assembly.Load("DedsiNative.HttpApi.Host"),
         Assembly.Load("DedsiNative.Operation"),
         Assembly.Load("DedsiNative.Infrastructure")
     )
@@ -84,6 +84,8 @@ app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
 // 注册 API 端点
 app.MapDedsiNativeEndpoints();
+
+app.MapGet("/", () => Results.Content(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "index.html")), "text/html"));
 
 try
 {
