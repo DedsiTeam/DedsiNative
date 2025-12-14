@@ -5,72 +5,206 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DedsiNative API Host</title>
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --text-color: #1f2937;
+            --text-secondary: #6b7280;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #ffffff;
-            color: #1f1f1f;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
         }
+
         .container {
             text-align: center;
-            max-width: 700px;
-            width: 90%;
-            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            padding: 3rem 2rem;
         }
+
         h1 {
-            color: #000;
-            font-size: 3rem;
+            color: #111827;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            letter-spacing: -1px;
-            line-height: 1.1;
+            letter-spacing: -0.025em;
+            line-height: 1;
+            background: linear-gradient(to right, #111827, #4b5563);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         p {
             font-size: 1.25rem;
-            color: #555;
-            margin-bottom: 3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
             line-height: 1.6;
-            font-weight: 300;
+            font-weight: 400;
         }
+
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background-color: #000;
             color: white;
-            padding: 16px 40px;
+            padding: 16px 32px;
             text-decoration: none;
-            border-radius: 0;
+            border-radius: 12px;
             font-weight: 600;
-            transition: all 0.2s ease;
-            font-size: 1.1rem;
-            border: 2px solid #000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.125rem;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+
         .btn:hover {
-            background-color: transparent;
-            color: #000;
+            background-color: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+
         .footer {
-            margin-top: 5rem;
-            font-size: 0.8rem;
-            color: #bbb;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-top: 4rem;
+            font-size: 0.875rem;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+            border-top: 1px solid #f3f4f6;
+            padding-top: 1.5rem;
+        }
+        
+        .footer a {
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer a:hover {
+            color: #111827;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .container {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
+    <canvas id="particles"></canvas>
     <div class="container">
-        <h1>DedsiNative API Host</h1>
+        <div style="font-size: 4rem; margin-bottom: 1rem;">🚀</div>
+        <h1>DedsiNative</h1>
         <p>极简、高效、现代化的 .NET Web API 服务。</p>
         
-        <a href="/scalar/v1" class="btn">浏览 API 文档</a>
+        <a href="/scalar/v1" class="btn">
+            浏览 API 文档
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
         
         <div class="footer">
-            <p>Powered by .NET & DedsiNative</p>
+            <p>Powered by .NET & DedsiNative (<a href="https://github.com/DedsiTeam">Dedsi Team</a>)</p>
         </div>
     </div>
+
+    <script>
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+        
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+                this.color = `rgba(156, 163, 175, ${Math.random() * 0.3 + 0.1})`;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
+                if (this.y < 0) this.y = height;
+                if (this.y > height) this.y = 0;
+            }
+            
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function init() {
+            resize();
+            particles = [];
+            const particleCount = Math.min(width * 0.15, 150);
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        
+        window.addEventListener('resize', () => {
+            resize();
+            init();
+        });
+        
+        init();
+        animate();
+    </script>
 </body>
 </html>

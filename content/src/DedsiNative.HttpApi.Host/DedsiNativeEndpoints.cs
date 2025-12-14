@@ -1,12 +1,9 @@
-﻿using DedsiNative.Apis.Users;
-
-namespace DedsiNative.Apis;
+﻿namespace DedsiNative;
 
 public static class DedsiNativeEndpoints
 {
     public static void MapDedsiNativeEndpoints(this IEndpointRouteBuilder endpoints)
     {
-        endpoints
-            .MapDedsiUserEndpoints();
+        endpoints.MapDedsiUserEndpoints();
     }
 }

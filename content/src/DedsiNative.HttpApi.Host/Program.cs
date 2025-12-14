@@ -1,11 +1,11 @@
-using DedsiNative.Apis;
-using DedsiNative.EntityFrameworkCores;
+using DedsiNative;
 using Scalar.AspNetCore;
 using Serilog;
 using Serilog.Events;
 using System.Reflection;
-using Dedsi;
 using Dedsi.AspNetCore.Middlewares;
+using DedsiNative.EntityFrameworkCores;
+using Microsoft.EntityFrameworkCore;
 
 // 配置 Serilog
 Log.Logger = new LoggerConfiguration()
@@ -14,6 +14,8 @@ Log.Logger = new LoggerConfiguration()
     .CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+
 builder.Host
     .UseSerilog((context, services, loggerConfiguration) =>
     {
@@ -31,17 +33,24 @@ builder.Services
     .Scan(scan => scan
     .FromAssemblies(
         Assembly.Load("DedsiNative.HttpApi.Host"),
-        Assembly.Load("DedsiNative.Operation"),
         Assembly.Load("DedsiNative.Infrastructure")
     )
-    .AddClasses(classes => classes.AssignableTo<IDedsiNativeOperation>())
     .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Repository")))
     .AsImplementedInterfaces()
     .WithTransientLifetime()
 );
 
-// 添加 EF Core MySQL 支持
-builder.Services.AddMySqlDb(builder.Configuration);
+#region Ef Core MySQL 支持
+var connectionString = configuration.GetConnectionString("DedsiNativeDB");
+builder.Services.AddDbContext<DedsiNativeDbContext>(options =>
+{
+    var serverVersion = ServerVersion.AutoDetect(connectionString);
+    options.UseMySql(connectionString, serverVersion, mySqlOptions =>
+    {
+        mySqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+    });
+});
+#endregion
 
 builder.Services.AddOpenApi();
 

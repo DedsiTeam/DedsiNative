@@ -11,7 +11,6 @@ public class DedsiNativeDbContext(DbContextOptions<DedsiNativeDbContext> options
     {
         modelBuilder.Entity<DedsiUser>(b =>
         {
-            b.ToTable("DedsiUsers");
             b.HasKey(e => e.Id);
         });
     }

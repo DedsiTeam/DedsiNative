@@ -14,11 +14,13 @@
         <PackageReference Include="Scrutor" Version="7.0.0" />
         <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
         <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
+
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\frameworks\Dedsi.AspNetCore\Dedsi.AspNetCore.csproj" />
-      <ProjectReference Include="..\DedsiNative.Operation\DedsiNative.Operation.csproj" />
+      <ProjectReference Include="..\DedsiNative.Infrastructure\DedsiNative.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,39 +1,9 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using System.Linq.Expressions;
 
 namespace DedsiNative.EntityFrameworkCores;
 
 public static class EntityFrameworkCoreExtensions
 {
-    /// <summary>
-    /// 使用 MySQL 配置并注册 DedsiNativeDbContext。
-    /// 从配置项 ConnectionStrings:Default 读取连接字符串，并启用失败重试策略。
-    /// </summary>
-    /// <param name="services">服务集合</param>
-    /// <param name="configuration">应用配置（用于读取连接字符串）</param>
-    /// <returns>IServiceCollection，便于链式调用</returns>
-    /// <exception cref="InvalidOperationException">当未配置 ConnectionStrings:DedsiNativeDB 时抛出</exception>
-    public static IServiceCollection AddMySqlDb(this IServiceCollection services, IConfiguration configuration)
-    {
-        var connectionString = configuration.GetConnectionString("DedsiNativeDB");
-        if (string.IsNullOrWhiteSpace(connectionString))
-        {
-            throw new InvalidOperationException("ConnectionStrings:DedsiNativeDB is not configured.");
-        }
-        services.AddDbContext<DedsiNativeDbContext>(options =>
-        {
-            var serverVersion = ServerVersion.AutoDetect(connectionString);
-            options.UseMySql(connectionString, serverVersion, mySqlOptions =>
-            {
-                mySqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
-            });
-        });
-
-        return services;
-    }
-
     /// <summary>
     /// 按条件追加 Where 子句：当 <paramref name="condition"/> 为 true 时应用 <paramref name="predicate"/>，否则返回原查询。
     /// </summary>
