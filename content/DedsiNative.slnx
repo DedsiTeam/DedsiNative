@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/frameworks/">
+    <Project Path="frameworks/Dedsi.AspNetCore/Dedsi.AspNetCore.csproj" />
+    <Project Path="frameworks/Dedsi.Domain/Dedsi.Domain.csproj" />
+    <Project Path="frameworks/Dedsi.Operation/Dedsi.Operation.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/DedsiNative.Domain/DedsiNative.Domain.csproj" />
+    <Project Path="src/DedsiNative.HttpApi/DedsiNative.HttpApi.csproj" />
+    <Project Path="src/DedsiNative.Infrastructure/DedsiNative.Infrastructure.csproj" />
+    <Project Path="src/DedsiNative.Operation/DedsiNative.Operation.csproj" />
+  </Folder>
+</Solution>
