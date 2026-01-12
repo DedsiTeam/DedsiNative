@@ -2,7 +2,7 @@
 
 public interface IDedsiNativeOperation;
 
-public class DedsiNativeOperation
+public class DedsiNativeOperation: IDedsiNativeOperation
 {
     /// <summary>
     /// string 主键生成，使用 ULID 标准
