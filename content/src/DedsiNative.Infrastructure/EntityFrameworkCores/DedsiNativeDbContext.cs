@@ -9,10 +9,13 @@ public class DedsiNativeDbContext(DbContextOptions<DedsiNativeDbContext> options
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<DedsiUser>(b =>
+        if (modelBuilder is null)
         {
-            b.ToTable("DedsiUsers");
-            b.HasKey(e => e.Id);
-        });
+            throw new ArgumentNullException(nameof(modelBuilder));
+        }
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(DedsiNativeDbContext).Assembly);
+
+        base.OnModelCreating(modelBuilder);
     }
 }
