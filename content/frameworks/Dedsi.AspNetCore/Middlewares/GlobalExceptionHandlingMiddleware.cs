@@ -1,11 +1,10 @@
-using Microsoft.AspNetCore.Hosting;
+using System.Net;
+using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System.Net;
-using System.Text.Json;
 
-namespace Dedsi.AspNetCore.Middlewares;
+namespace Dedsi.Middlewares;
 
 /// <summary>
 /// 全局异常处理中间件

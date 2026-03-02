@@ -5,7 +5,7 @@ using Serilog;
 using Serilog.Events;
 using System.Reflection;
 using Dedsi;
-using Dedsi.AspNetCore.Middlewares;
+using Dedsi.Middlewares;
 
 // 配置 Serilog
 Log.Logger = new LoggerConfiguration()
